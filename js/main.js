@@ -15,6 +15,7 @@ var hasResized = true;
 var freezeWidth;
 var freezeHeight;
 var touchPoints;
+var touchAffectsCloth = false;
 
 // Hexagons resize at different screen widths and heights
 var minHexWidth = 32; // when smallest of width or height is below...
@@ -48,7 +49,6 @@ class TouchPoint {
     this.y = y; // y position
     this.px = x;
     this.py = y;
-    this.touchMovingTimer = mouseMoveTimeout;
   }
 }
 
@@ -391,12 +391,24 @@ function mouseMoved() {
 }
 
 function touchMoved() {
-  for(i = 0; i < touches.length; i++) {
-    // Reset timer
-    touchPoints[i] = new TouchPoint();
-    touchPoints[i].px = touchPoints[i].x;
-    touchPoints[i].py = touchPoints[i].y;
-    mouse.x = touches[1].x;
-    mouse.y = touches[1].y;
+  if(touchPoints.length === touches.length) {
+    for(i = 0; i < touches.length; i++) {
+      // Reset timer
+      touchPoints[i].px = touchPoints[i].x;
+      touchPoints[i].py = touchPoints[i].y;
+      touchPoints[i].x = touches[1].x;
+      touchPoints[i].y = touches[1].y;
+    }
+  } else {
+    touchAffectsCloth = false;
+    touchPoints = new Array(touches.length);
+    for(i = 0; i < touches.length; i++) {
+      touchPoints[i] = new TouchPoint();
+      // Reset timer
+      touchPoints[i].px = touches[1].x;
+      touchPoints[i].py = touches[1].y;
+      touchPoints[i].x = touches[1].x;
+      touchPoints[i].y = touches[1].y;
+    }
   }
 }
