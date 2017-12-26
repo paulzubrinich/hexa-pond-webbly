@@ -431,9 +431,9 @@ function initialiseTouches() {
   touchPoints = new Array(touches.length);
   for(i = 0; i < touchPoints.length; i++) {
     touchPoints[i] = new TouchPoint(touches[i].x, touches[i].y);
-    touchPoints[i].px = touches[1].x;
-    touchPoints[i].py = touches[1].y;
-    touchPoints[i].x = touches[1].x;
-    touchPoints[i].y = touches[1].y;
+    touchPoints[i].px = touches[i].x;
+    touchPoints[i].py = touches[i].y;
+    touchPoints[i].x = touches[i].x;
+    touchPoints[i].y = touches[i].y;
   }
 }
