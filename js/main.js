@@ -237,8 +237,6 @@ class Cloth {
 }
 
 function setup() {
-  stroke(lineColor);
-  strokeWeight(lineThickness);
   freezeWidth = windowWidth;
   freezeHeight = windowHeight;
   determineNumberOfHexagons();
@@ -250,6 +248,8 @@ function setup() {
   });
   cloth = new Cloth();
   touchPoints = [];
+  stroke(lineColor);
+  strokeWeight(lineThickness);
 }
 
 function determineNumberOfHexagons() {
