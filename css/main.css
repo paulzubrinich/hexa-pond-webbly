@@ -297,6 +297,7 @@ textarea {
 
 body {
   background: #0076a6;
+  overflow: hidden;
 }
 
 body, html {

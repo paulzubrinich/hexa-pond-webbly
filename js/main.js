@@ -355,10 +355,6 @@ function draw() {
   */
   background(backgroundColor);
   cloth.update(0.016);
-
-  textSize(32);
-  fill(255, 255, 255);
-  text('potato', 200, 200);
 }
 
 /*
@@ -409,6 +405,7 @@ function mouseMoved() {
 
 function touchStarted() {
   touchAffectsCloth = false;
+  return false;
 }
 
 function touchEnded() {
@@ -416,10 +413,8 @@ function touchEnded() {
 }
 
 function touchMoved() {
-  if(touchPoints.length === touches.length) {
-    textSize(32);
-    fill(255, 255, 255);
-    text(touches.length, 200, 200);
+  if(touches.length > 0 && touchPoints.length === touches.length) {
+    console.log(touches.length);
     touchAffectsCloth = true;
     for(i = 0; i < touches.length; i++) {
       // Reset timer
