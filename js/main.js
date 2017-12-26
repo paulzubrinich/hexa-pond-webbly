@@ -406,6 +406,14 @@ function mouseMoved() {
   mouse.y = mouseY;
 }
 
+function touchStarted() {
+  touchAffectsCloth = false;
+}
+
+function touchEnded() {
+  touchAffectsCloth = false;
+}
+
 function touchMoved() {
   if(touchPoints.length === touches.length) {
     textSize(32);
