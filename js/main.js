@@ -72,7 +72,7 @@ class Point {
     if (this.pinX && this.pinY) return this;
 
     if(touchAffectsCloth) {
-      for(i = 0; i < touches.length; i++) {
+      for(i = 0; i < touchPoints.length; i++) {
       var dx = this.x - touchPoints[i].x;
       var dy = this.y - touchPoints[i].y;
       var dist = Math.sqrt(dx * dx + dy * dy);
@@ -409,7 +409,6 @@ function mouseMoved() {
 
 function touchStarted() {
   touchAffectsCloth = false;
-  return false;
 }
 
 function touchEnded() {
