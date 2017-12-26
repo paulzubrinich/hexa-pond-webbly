@@ -415,7 +415,6 @@ function touchEnded() {
 
 function touchMoved() {
   if(touchPoints.length > 0 && touchPoints.length === touches.length) {
-    console.log(touchPoints.length);
     touchAffectsCloth = true;
     for(i = 0; i < touchPoints.length; i++) {
       touchPoints[i].px = touchPoints[i].x;
