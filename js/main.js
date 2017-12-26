@@ -18,7 +18,7 @@ var touchPoints;
 var touchAffectsCloth = false;
 
 // Hexagons resize at different screen widths and heights
-var minHexWidth = 32; // when smallest of width or height is below...
+var minHexWidth = 64; // when smallest of width or height is below...
 var atBelow = 320; // pixels
 var maxHexWidth = 100; // when smallest of width or height is above...
 var atAbove = 950; // pixels
@@ -355,6 +355,10 @@ function draw() {
   */
   background(backgroundColor);
   cloth.update(0.016);
+
+  textSize(32);
+  fill(255, 255, 255);
+  text('potato', 200, 200);
 }
 
 /*
