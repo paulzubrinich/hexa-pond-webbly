@@ -8,6 +8,7 @@ var tearDist = 9999999999; //Impossible to rip
 var friction = 0.99; // Amount the mouse 'pulls' on the lattice as it moves
 var bounce = 0.5;
 var distanceOfMouseInfluence = 30; // distance of mouse influence
+var distanceOfMouseInfluenceSquared = distanceOfMouseInfluence * distanceOfMouseInfluence;
 var extendBeyondEdge = 1; // Extend by this many hexagons beyond the edge
 var lineThickness = 2; // Thickness of lines
 var lwgLogoThickness = 0.303797; // The thickness of the LWG logo (1 would extend to the centre of the hexagon)
@@ -34,7 +35,7 @@ var cloth;
 
 var mouse = {
   cut: 8,
-  influence: distanceOfMouseInfluence,
+  influence: distanceOfMouseInfluenceSquared,
   down: false,
   button: 1,
   x: 0,
@@ -75,7 +76,7 @@ class Point {
       for(i = 0; i < touchPoints.length; i++) {
       var dx = this.x - touchPoints[i].x;
       var dy = this.y - touchPoints[i].y;
-      var dist = Math.sqrt(dx * dx + dy * dy);
+      var dist = dx * dx + dy * dy;
 
       if (dist < mouse.influence) {
         this.px = this.x - (touchPoints[i].x - touchPoints[i].px);
@@ -89,7 +90,7 @@ class Point {
       mouseMovingTimer -= 1;
       var dx = this.x - mouse.x;
       var dy = this.y - mouse.y;
-      var dist = Math.sqrt(dx * dx + dy * dy);
+      var dist = dx * dx + dy * dy;
 
       if (dist < mouse.influence) {
         this.px = this.x - (mouse.x - mouse.px);
@@ -404,35 +405,37 @@ function mouseMoved() {
 }
 
 function touchStarted() {
-  touchAffectsCloth = false;
+  initialiseTouches();
   return false;
 }
 
 function touchEnded() {
-  touchAffectsCloth = false;
+  initialiseTouches();
 }
 
 function touchMoved() {
   if(touches.length > 0 && touchPoints.length === touches.length) {
     console.log(touches.length);
     touchAffectsCloth = true;
-    for(i = 0; i < touches.length; i++) {
+    for(i = 0; i < touchPoints.length; i++) {
       // Reset timer
       touchPoints[i].px = touchPoints[i].x;
       touchPoints[i].py = touchPoints[i].y;
       touchPoints[i].x = touches[1].x;
       touchPoints[i].y = touches[1].y;
     }
-  } else {
-    touchAffectsCloth = false;
-    touchPoints = new Array(touches.length);
-    for(i = 0; i < touches.length; i++) {
-      touchPoints[i] = new TouchPoint(touches[i].x, touches[i].y);
-      // Reset timer
-      touchPoints[i].px = touches[1].x;
-      touchPoints[i].py = touches[1].y;
-      touchPoints[i].x = touches[1].x;
-      touchPoints[i].y = touches[1].y;
-    }
+  }
+}
+
+function initialiseTouches() {
+  touchAffectsCloth = false;
+  touchPoints = new Array(touches.length);
+  for(i = 0; i < touchPoints.length; i++) {
+    touchPoints[i] = new TouchPoint(touches[i].x, touches[i].y);
+    // Reset timer
+    touchPoints[i].px = touches[1].x;
+    touchPoints[i].py = touches[1].y;
+    touchPoints[i].x = touches[1].x;
+    touchPoints[i].y = touches[1].y;
   }
 }
