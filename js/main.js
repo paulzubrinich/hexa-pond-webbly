@@ -427,7 +427,7 @@ function touchMoved() {
     touchAffectsCloth = false;
     touchPoints = new Array(touches.length);
     for(i = 0; i < touches.length; i++) {
-      touchPoints[i] = new TouchPoint();
+      touchPoints[i] = new TouchPoint(touches[i].x, touches[i].y);
       // Reset timer
       touchPoints[i].px = touches[1].x;
       touchPoints[i].py = touches[1].y;
