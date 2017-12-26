@@ -407,6 +407,9 @@ function mouseMoved() {
 }
 
 function touchStarted() {
+  textSize(32);
+  fill(255, 255, 255);
+  text('word', 200, 200);
   touchAffectsCloth = false;
   return false;
 }
