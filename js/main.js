@@ -1,11 +1,11 @@
 var mouseMoveTimeout = 3000; // Time for lack of mouse movement to 'release' grip on cloth
 var mouseMovingTimer = mouseMoveTimeout;
 var mouseAffectsCloth = true;
-var accuracy = 5;
+var accuracy = 1;
 var gravity = 40; // Amount of force pulling the lattice back to its original structure
 var distortWidth = Math.sin(Math.PI / 3);
 var tearDist = 9999999999; //Impossible to rip
-var friction = 0.99; // Amount the mouse 'pulls' on the lattice as it moves
+var friction = 0.97; // Amount the mouse 'pulls' on the lattice as it moves
 var bounce = 0.5;
 var distanceOfMouseInfluence = 30; // distance of mouse influence
 var distanceOfMouseInfluenceSquared = distanceOfMouseInfluence * distanceOfMouseInfluence;
@@ -165,7 +165,7 @@ class Point {
 
 class Constraint {
   constructor (p1, p2, isLogo) {
-    this.isLogo = isLogo; // Determines if Constraint is 
+    this.isLogo = isLogo;
     this.p1 = p1;
     this.p2 = p2;
     this.length = hexHeight / 2;
