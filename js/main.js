@@ -71,6 +71,19 @@ class Point {
   update (delta) {
     if (this.pinX && this.pinY) return this;
 
+    if(touchAffectsCloth) {
+      for(i = 0; i < touches.length; i++) {
+      var dx = this.x - touchPoints[i].x;
+      var dy = this.y - touchPoints[i].y;
+      var dist = Math.sqrt(dx * dx + dy * dy);
+
+      if (dist < mouse.influence) {
+        this.px = this.x - (touchPoints[i].x - touchPoints[i].px);
+        this.py = this.y - (touchPoints[i].y - touchPoints[i].py);
+      }
+    }
+  }
+
     if (mouseAffectsCloth && mouseMovingTimer > 0) {
       // Decrement timer
       mouseMovingTimer -= 1;
@@ -392,6 +405,7 @@ function mouseMoved() {
 
 function touchMoved() {
   if(touchPoints.length === touches.length) {
+    touchAffectsCloth = true;
     for(i = 0; i < touches.length; i++) {
       // Reset timer
       touchPoints[i].px = touchPoints[i].x;
