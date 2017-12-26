@@ -414,11 +414,10 @@ function touchEnded() {
 }
 
 function touchMoved() {
-  if(touches.length > 0 && touchPoints.length === touches.length) {
+  if(touchPoints.length > 0 && touchPoints.length === touches.length) {
     console.log(touches.length);
     touchAffectsCloth = true;
     for(i = 0; i < touchPoints.length; i++) {
-      // Reset timer
       touchPoints[i].px = touchPoints[i].x;
       touchPoints[i].py = touchPoints[i].y;
       touchPoints[i].x = touches[1].x;
@@ -432,7 +431,6 @@ function initialiseTouches() {
   touchPoints = new Array(touches.length);
   for(i = 0; i < touchPoints.length; i++) {
     touchPoints[i] = new TouchPoint(touches[i].x, touches[i].y);
-    // Reset timer
     touchPoints[i].px = touches[1].x;
     touchPoints[i].py = touches[1].y;
     touchPoints[i].x = touches[1].x;
