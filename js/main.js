@@ -34,7 +34,6 @@ var parallax; // Displacement from parallax from 0 (scrolled upward) through 0.5
 var cloth;
 
 var mouse = {
-  cut: 8,
   influence: distanceOfMouseInfluenceSquared,
   down: false,
   button: 1,
@@ -240,7 +239,6 @@ class Cloth {
 }
 
 function setup() {
-  //generateHexagons();
   freezeWidth = windowWidth;
   freezeHeight = windowHeight;
   determineNumberOfHexagons();
@@ -318,31 +316,6 @@ function drawLWGLogos() {
   }
 }
 
-/*
-function generateHexagons() {
-  var smallestOfWidthHeight = width < height ? width : height;
-  hexWidth = width / round(width / map(smallestOfWidthHeight, atBelow, atAbove, minHexWidth, maxHexWidth, true));
-  hexHeight = hexWidth / sin(PI / 3);
-  hexEdgeLength = hexHeight / 2;
-  numX = ceil(2 * width / hexWidth) + 1;
-  numY = ceil((4 / 3) * height / hexHeight) + 1;
-  xcoord = new Array(numX);
-  ycoord = new Array(numX);
-
-  for(var x = 0; x < numX; x++) {
-    xcoord[x] = new Array(numY);
-    ycoord[x] = new Array(numY);
-  }
-  // Create initial hexagon coordinates as points
-  for(var y = 0; y < numY; y++) {
-    for(var x = 0; x < numX; x++) {
-      xcoord[x][y] = x * hexWidth / 2;
-      ycoord[x][y] = (y * hexHeight * 3 / 4) + (hexHeight / 4) * ((x + (y % 2)) % 2);
-    }
-  }
-}
-*/
-
 function draw() {
   constrain(parallax, 0, 1);
   if(parallax < 0.5) {
@@ -350,35 +323,9 @@ function draw() {
   } else {
     translate(0, (parallax - 0.5) * 2 * height);
   }
-  /*
-  drawHorizontals();
-  drawVerticals();
-  */
   background(backgroundColor);
   cloth.update(0.016);
 }
-
-/*
-function drawHorizontals() {
-  stroke(lineColor);
-  strokeWeight(1);
-  for(var y = 0; y < numY; y++) {
-    for(var x = 0; x < numX - 1; x++) {
-      line(xcoord[x][y],ycoord[x][y],xcoord[x + 1][y],ycoord[x + 1][y]);
-    }
-  }
-}
-
-function drawVerticals() {
-  stroke(lineColor);
-  strokeWeight(1);
-  for(var y = 0; y < numY - 1; y++) {
-    for(var x = (y + 1) % 2; x < numX; x = x + 2) {
-      line(xcoord[x][y],ycoord[x][y],xcoord[x][y + 1],ycoord[x][y + 1]);
-    }
-  }
-}
-*/
 
 function windowResized() {
   hasResized = false;
