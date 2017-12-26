@@ -194,8 +194,6 @@ class Constraint {
   }
 
   draw () {
-    stroke(lineColor);
-    strokeWeight(lineThickness);
     line(this.p1.x, this.p1.y, this.p2.x, this.p2.y);
   }
 }
@@ -239,6 +237,8 @@ class Cloth {
 }
 
 function setup() {
+  stroke(lineColor);
+  strokeWeight(lineThickness);
   freezeWidth = windowWidth;
   freezeHeight = windowHeight;
   determineNumberOfHexagons();
@@ -286,8 +286,6 @@ function drawLWGLogos() {
       var xcentroid = (xtl + xtc + xtr + xbl + xbc + xbr) / 6;
       var ycentroid = (ytl + ytc + ytr + ybl + ybc + ybr) / 6;
 
-      stroke(lineColor);
-      strokeWeight(lineThickness);
       // Draw left line in logo
       line(xtl * (1 - lwgLogoThickness) + (xtc * lwgLogoThickness), ytl * (1 - lwgLogoThickness) + (ytc * lwgLogoThickness), xbl * (1 - lwgLogoThickness) + (xcentroid * lwgLogoThickness), ybl * (1 - lwgLogoThickness) + (ycentroid * lwgLogoThickness));
       // Draw bottom left line in logo
