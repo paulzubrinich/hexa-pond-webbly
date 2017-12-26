@@ -408,6 +408,7 @@ function mouseMoved() {
 
 function touchStarted() {
   touchAffectsCloth = false;
+  return false;
 }
 
 function touchEnded() {
